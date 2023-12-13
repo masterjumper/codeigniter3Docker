@@ -4,7 +4,7 @@ services:
   app:
     container_name: aplicacion
     build:
-      dockerfile: C:/imagenesDocker/aplicacion/Dockerfile
+      dockerfile: aplicacion/Dockerfile
       context: ./
     volumes:
       - ./aplicacion/:/var/www/html/aplicacion
@@ -21,7 +21,7 @@ services:
   db:
     container_name: contenedor_db
     build:
-      dockerfile: C:/imagenesDocker/bd2/Dockerfile
+      dockerfile: bd2/Dockerfile
       context: ./
     restart: always
     volumes:
