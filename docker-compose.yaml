@@ -1,0 +1,46 @@
+version: '3.8'
+
+services:  
+  app:
+    container_name: mantenimiento_des
+    build:
+      dockerfile: C:/imagenesDocker/mantenimiento_des/Dockerfile
+      context: ./
+    volumes:
+      - ./mantenimiento_des/:/var/www/html/mantenimiento_des
+    ports:
+      - 8080:80
+    environment:
+      MYSQL_ROOT_PASSWORD: 'PassWord'
+      MYSQL_DATABASE: 'mantenimiento_des'
+    depends_on:
+      - db
+    networks:
+      - mynetwork
+  
+  db:
+    container_name: mantenimiento_db
+    build:
+      dockerfile: C:/imagenesDocker/bd2/Dockerfile
+      context: ./
+    restart: always
+    volumes:
+      - ./db_data:/var/lib/mysql
+    networks:
+      - mynetwork    
+
+  phpmyadmin:
+    container_name: phpmyadmin
+    image: phpmyadmin/phpmyadmin
+    restart: always
+    ports:
+      - '8081:80'
+    environment:
+      UPLOAD_LIMIT: 256M
+
+    networks:
+      - mynetwork  
+
+networks:
+  mynetwork:
+    driver: bridge
