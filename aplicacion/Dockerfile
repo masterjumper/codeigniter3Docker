@@ -6,11 +6,11 @@ RUN docker-php-ext-install pgsql && docker-php-ext-enable pgsql
 # Install and enable mysql extension
 RUN docker-php-ext-install mysqli && docker-php-ext-enable mysqli
 #Work Directory
-WORKDIR /var/www/html/mantenimiento_des
+WORKDIR /var/www/html/aplicacion
 #Copy
-COPY mantenimiento_des .
+COPY aplicacion .
 #Permissions
-RUN chmod -R 755 /var/www/html/mantenimiento_des *.*
+RUN chmod -R 755 /var/www/html/aplicacion *.*
 
 RUN apt-get update 
 

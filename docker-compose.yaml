@@ -2,24 +2,24 @@ version: '3.8'
 
 services:  
   app:
-    container_name: mantenimiento_des
+    container_name: aplicacion
     build:
-      dockerfile: C:/imagenesDocker/mantenimiento_des/Dockerfile
+      dockerfile: C:/imagenesDocker/aplicacion/Dockerfile
       context: ./
     volumes:
-      - ./mantenimiento_des/:/var/www/html/mantenimiento_des
+      - ./aplicacion/:/var/www/html/aplicacion
     ports:
       - 8080:80
     environment:
       MYSQL_ROOT_PASSWORD: 'PassWord'
-      MYSQL_DATABASE: 'mantenimiento_des'
+      MYSQL_DATABASE: 'aplicacion'
     depends_on:
       - db
     networks:
       - mynetwork
   
   db:
-    container_name: mantenimiento_db
+    container_name: contenedor_db
     build:
       dockerfile: C:/imagenesDocker/bd2/Dockerfile
       context: ./
